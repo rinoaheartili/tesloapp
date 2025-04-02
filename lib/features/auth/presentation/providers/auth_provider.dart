@@ -1,22 +1,28 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tesloapp/features/auth/domain/domain.dart';
 import 'package:tesloapp/features/auth/infrastructure/infrastructure.dart';
+import 'package:tesloapp/features/shared/infrastructure/services/key_value_storage_service.dart';
+import 'package:tesloapp/features/shared/infrastructure/services/key_value_storage_service_impl.dart';
 
 final authProvider = StateNotifierProvider<AuthNotifier,AuthState>((ref) 
 {
   final authRepository = AuthRepositoryImpl();
+  final keyValueStorageService = KeyValueStorageServiceImpl();
 
   return AuthNotifier(
-    authRepository: authRepository
+    authRepository: authRepository,
+    keyValueStorageService: keyValueStorageService
   );
 });
 
 class AuthNotifier extends StateNotifier<AuthState> 
 {
   final AuthRepository authRepository;
+  final KeyValueStorageService keyValueStorageService;
 
   AuthNotifier({
-    required this.authRepository
+    required this.authRepository,
+    required this.keyValueStorageService,
   }): super(AuthState()); 
 
   Future<void> loginUser(String email, String password) async 
@@ -43,13 +49,27 @@ class AuthNotifier extends StateNotifier<AuthState>
     
   }
 
-  void checkAuthStatus() async {}
+  void checkAuthStatus() async 
+  {
+    final token = await keyValueStorageService.getValue<String>('token');
+    if(token == null) return logout();
+
+    try 
+    {
+      final user = await authRepository.checkAuthStatus(token);
+      _setLoggedUser(user);
+    } catch (e) 
+    {
+      logout();
+    }
+  }
 
   void _setLoggedUser(User user) 
   {
     state = state.copyWith(
       user: user,
       authStatus: AuthStatus.authenticated,
+      errorMessage: ''
     );
   }
 

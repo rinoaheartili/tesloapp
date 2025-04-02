@@ -6,12 +6,13 @@ import 'package:tesloapp/features/auth/presentation/providers/login_form_provide
 import 'package:tesloapp/features/shared/shared.dart';
 
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget 
+{
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) 
+  {
     final size = MediaQuery.of(context).size;
     final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
 
@@ -55,7 +56,8 @@ class _LoginForm extends ConsumerWidget
 {
   const _LoginForm();
 
-  void showSnackbar(BuildContext context, String message){
+  void showSnackbar(BuildContext context, String message)
+  {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message))
