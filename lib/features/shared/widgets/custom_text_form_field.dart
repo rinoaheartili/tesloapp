@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
-class CustomTextFormField extends StatelessWidget {
-
+class CustomTextFormField extends StatelessWidget 
+{
   final String? label;
   final String? hint;
   final String? errorMessage;
@@ -23,8 +22,8 @@ class CustomTextFormField extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) 
+  {
     final colors = Theme.of(context).colorScheme;
 
     final border = OutlineInputBorder(
@@ -41,7 +40,7 @@ class CustomTextFormField extends StatelessWidget {
         borderRadius: const BorderRadius.only(topLeft: borderRadius, bottomLeft: borderRadius, bottomRight: borderRadius ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 10,
             offset: const Offset(0,5)
           )
@@ -57,8 +56,8 @@ class CustomTextFormField extends StatelessWidget {
           floatingLabelStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
           enabledBorder: border,
           focusedBorder: border,
-          errorBorder: border.copyWith( borderSide: BorderSide( color: Colors.red.shade800 )),
-          focusedErrorBorder: border.copyWith( borderSide: BorderSide( color: Colors.red.shade800 )),
+          errorBorder: border.copyWith( borderSide: const BorderSide( color: Colors.transparent )),
+          focusedErrorBorder: border.copyWith( borderSide: const BorderSide( color: Colors.transparent )),
           isDense: true,
           label: label != null ? Text(label!) : null,
           hintText: hint,

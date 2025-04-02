@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tesloapp/features/auth/presentation/providers/auth_provider.dart';
+import 'package:tesloapp/features/auth/presentation/providers/login_form_provider.dart';
 import 'package:tesloapp/features/shared/shared.dart';
 
 
@@ -48,12 +51,28 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
+class _LoginForm extends ConsumerWidget 
+{
   const _LoginForm();
 
-  @override
-  Widget build(BuildContext context) {
+  void showSnackbar(BuildContext context, String message){
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message))
+      );
+  }
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) 
+  {
+    final loginForm = ref.watch(loginFormProvider);
+
+    ref.listen(authProvider, (previous, next)
+    {
+      if(next.errorMessage.isEmpty) return;
+      showSnackbar(context, next.errorMessage);  
+    });
+    
     final textStyles = Theme.of(context).textTheme;
 
     return Padding(
@@ -64,15 +83,20 @@ class _LoginForm extends StatelessWidget {
           Text('Login', style: textStyles.titleLarge ),
           const SizedBox( height: 90 ),
 
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Correo',
             keyboardType: TextInputType.emailAddress,
+            onChanged: ref.read(loginFormProvider.notifier).onEmailChange,
+            errorMessage: loginForm.isFormPosted ? loginForm.email.errorMessage : null,
           ),
           const SizedBox( height: 30 ),
 
-          const CustomTextFormField(
+          CustomTextFormField(
             label: 'Contraseña',
             obscureText: true,
+            onChanged: ref.read(loginFormProvider.notifier).onPasswordChange,
+            errorMessage: loginForm.isFormPosted ? 
+            loginForm.password.errorMessage : null,
           ),
     
           const SizedBox( height: 30 ),
@@ -84,7 +108,7 @@ class _LoginForm extends StatelessWidget {
               text: 'Ingresar',
               buttonColor: Colors.black,
               onPressed: (){
-
+                ref.read(loginFormProvider.notifier).onFormSubmit();
               },
             )
           ),

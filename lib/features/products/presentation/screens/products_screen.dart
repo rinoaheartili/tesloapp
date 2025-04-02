@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tesloapp/features/shared/shared.dart';
 
-class ProductsScreen extends StatelessWidget {
+class ProductsScreen extends StatelessWidget 
+{
   const ProductsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) 
+  {
     final scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -30,12 +31,13 @@ class ProductsScreen extends StatelessWidget {
   }
 }
 
-
-class _ProductsView extends StatelessWidget {
+class _ProductsView extends StatelessWidget 
+{
   const _ProductsView();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) 
+  {
     return const Center(child: Text('Eres genial!'));
   }
 }

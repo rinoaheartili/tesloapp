@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tesloapp/features/shared/shared.dart';
 
-
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget 
+{
   const RegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) 
+  {
     final size = MediaQuery.of(context).size;
     final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
     final textStyles = Theme.of(context).textTheme;
@@ -60,12 +60,13 @@ class RegisterScreen extends StatelessWidget {
   }
 }
 
-class _RegisterForm extends StatelessWidget {
+class _RegisterForm extends StatelessWidget 
+{
   const _RegisterForm();
 
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) 
+  {
     final textStyles = Theme.of(context).textTheme;
 
     return Padding(
