@@ -4,7 +4,7 @@ import 'package:tesloapp/features/auth/presentation/providers/auth_provider.dart
 
 final goRouterNotifierProvider = Provider((ref) 
 {
-  final authNotifier = ref.read( authProvider.notifier);
+  final authNotifier = ref.read(authProvider.notifier);
   return GoRouterNotifier(authNotifier);
 });
 
@@ -16,14 +16,15 @@ class GoRouterNotifier extends ChangeNotifier
 
   GoRouterNotifier(this._authNotifier) 
   {
-    _authNotifier.addListener((state) {
+    _authNotifier.addListener((state) 
+    {
       authStatus = state.authStatus;
     });
   }
 
   AuthStatus get authStatus => _authStatus;
 
-  set authStatus( AuthStatus value ) 
+  set authStatus(AuthStatus value) 
   {
     _authStatus = value;
     notifyListeners();

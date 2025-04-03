@@ -7,9 +7,7 @@ void main() async
   await Environment.initEnvironmet();
 
   runApp(
-    const ProviderScope(
-      child: ProviderScope(child: MainApp())
-    )
+    const ProviderScope(child: MainApp())
   );
 }
 

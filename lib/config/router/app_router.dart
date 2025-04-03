@@ -11,7 +11,7 @@ final goRouterProvider = Provider((ref)
   final goRouterNotifier = ref.read(goRouterNotifierProvider);
 
   return GoRouter(
-    initialLocation: '/splash',
+    initialLocation: '/login',
     refreshListenable: goRouterNotifier,
     routes: [
       ///* Primera pantalla
@@ -35,11 +35,18 @@ final goRouterProvider = Provider((ref)
         path: '/',
         builder: (context, state) => const ProductsScreen(),
       ),
+
+      GoRoute(
+        path: '/product/:id',
+        builder: (context, state) => ProductScreen(
+          productId: state.params['id'] ?? 'no-id',
+        ),
+      ),
     ],
 
     redirect: (context, state) 
-    {  
-      final isGoingTo = state.subloc;
+    {
+      final isGoingTo = state.matchedLocation;
       final authStatus = goRouterNotifier.authStatus;
 
       if(isGoingTo == '/splash' && authStatus == AuthStatus.checking) return null;
