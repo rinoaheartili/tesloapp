@@ -27,6 +27,35 @@ This section is dedicated to route protection using Go_Router + Riverpod. We'll 
  - User preferences
  - Permanently storing access tokens
 
+## Specific topics in this Third section
+
+ - In this section, we will do the following:
+ - Improve the login mechanism (Automatic login button)
+ - Masonry ListView
+ - Products
+ - Entity
+ - Datasources
+ - Repositories
+ - Riverpod
+ - Provider
+ - StateNotifierProvider
+
+## Specific Topics in the Fourth Section
+
+This section is dedicated to product creation and maintenance. Specifically:
+
+ - Forms
+ - Button Segments
+ - Selectors
+ - Posts
+ - Path
+ - Post
+ - Event Feedback
+ - Error Handling
+ - Custom Inputs
+
+And everything related to product maintenance
+
 ## Dev
 
  1. Copy the .env.template and rename it to .env
