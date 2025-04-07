@@ -48,8 +48,8 @@ This section is dedicated to product creation and maintenance. Specifically:
  - Button Segments
  - Selectors
  - Posts
- - Path
- - Post
+    - Path
+    - Post
  - Event Feedback
  - Error Handling
  - Custom Inputs

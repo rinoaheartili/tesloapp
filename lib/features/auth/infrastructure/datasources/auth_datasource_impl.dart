@@ -15,7 +15,7 @@ class AuthDataSourceImpl extends AuthDataSource
     try 
     {
       httpService.setAccessToken(token);
-      final response = await httpService.dio.get('${httpService.dio.options.baseUrl}/auth/check-status');
+      final response = await httpService.dio.get('/auth/check-status');
 
       final user = UserMapper.userJsonToEntity(response.data);
       return user;
@@ -39,7 +39,7 @@ class AuthDataSourceImpl extends AuthDataSource
   {
     try 
     {
-      final response = await httpService.dio.post('${httpService.dio.options.baseUrl}/auth/login', data: {'email': email, 'password': password});
+      final response = await httpService.dio.post('/auth/login', data: {'email': email, 'password': password});
 
       final user = UserMapper.userJsonToEntity(response.data);
       return user;

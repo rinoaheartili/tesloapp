@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:tesloapp/config/config.dart';
+import 'package:tesloapp/config/logs/logger_impl.dart';
 
 class HttpService 
 {
@@ -14,17 +15,17 @@ class HttpService
     _dio?.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) 
       {
-        print('Solicitud: ${options.method} ${options.path}');
+        LoggerImpl.log('Solicitud: ${options.method} ${options.path}', level: LogLevel.info);
         return handler.next(options);
       },
       onResponse: (response, handler) 
       {
-        print('Respuesta: ${response.statusCode}');
+        LoggerImpl.log('Respuesta: ${response.statusCode}', level: LogLevel.info);
         return handler.next(response);
       },
       onError: (DioException e, handler) 
       {
-        print('Error: ${e.message}');
+        LoggerImpl.log('Error: ${e.message}', level: LogLevel.info);
         return handler.next(e);
       },
     ));
@@ -42,6 +43,10 @@ class HttpService
         {
           // Devuelve `true` si el estado es exitoso o si es el código 400
           return (status! >= 200 && status < 300) || status == 400;
+        },
+        headers: 
+        {
+          'Content-Type': 'application/json',
         },
       ),
     );

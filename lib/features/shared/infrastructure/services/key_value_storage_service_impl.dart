@@ -23,7 +23,7 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService
         return prefs.getString(key) as T?;
 
       default:
-        throw UnimplementedError('GET not implemented for type ${ T.runtimeType }');
+        throw UnimplementedError('GET not implemented for type ${T.runtimeType}');
     }
   }
 
@@ -50,7 +50,7 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService
         break;
 
       default:
-        throw UnimplementedError('Set not implemented for type ${ T.runtimeType }');
+        throw UnimplementedError('Set not implemented for type ${T.runtimeType}');
     } 
   }
 

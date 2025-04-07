@@ -55,8 +55,10 @@ class _ProductsViewState extends ConsumerState
   {
     super.initState();
     
-    scrollController.addListener(() {
-      if ( (scrollController.position.pixels + 400) >= scrollController.position.maxScrollExtent ) {
+    scrollController.addListener(() 
+    {
+      if((scrollController.position.pixels + 400) >= scrollController.position.maxScrollExtent) 
+      {
         ref.read(productsProvider.notifier).loadNextPage();
       }
     });
@@ -73,7 +75,7 @@ class _ProductsViewState extends ConsumerState
   @override
   Widget build(BuildContext context) 
   {
-    final productsState = ref.watch( productsProvider );
+    final productsState = ref.watch(productsProvider);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -87,7 +89,7 @@ class _ProductsViewState extends ConsumerState
         itemBuilder: (context, index) {
           final product = productsState.products[index];
           return GestureDetector(
-            onTap: () =>  context.push('/product/${ product.id }'),
+            onTap: () =>  context.push('/product/${product.id}'),
             child: ProductCard(product: product)
           );
         },

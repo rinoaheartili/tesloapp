@@ -5,7 +5,6 @@ import 'package:tesloapp/features/auth/presentation/providers/auth_provider.dart
 import 'package:tesloapp/features/auth/presentation/providers/login_form_provider.dart';
 import 'package:tesloapp/features/shared/shared.dart';
 
-
 class LoginScreen extends StatelessWidget 
 {
   const LoginScreen({super.key});
@@ -25,14 +24,14 @@ class LoginScreen extends StatelessWidget
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox( height: 80 ),
+                const SizedBox(height: 80),
                 // Icon Banner
                 const Icon( 
                   Icons.production_quantity_limits_rounded, 
                   color: Colors.white,
                   size: 100,
                 ),
-                const SizedBox( height: 80 ),
+                const SizedBox(height: 80),
     
                 Container(
                   height: size.height - 260, // 80 los dos sizebox y 100 el ícono
@@ -61,7 +60,7 @@ class _LoginForm extends ConsumerWidget
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message))
-      );
+    );
   }
 
   @override
