@@ -56,6 +56,18 @@ This section is dedicated to product creation and maintenance. Specifically:
 
 And everything related to product maintenance
 
+## Specific Topics in the Five Section
+
+This section has several objectives, but the main one is to learn how to take and select photos and upload them to a RESTFul API, specifically, we will cover:
+
+ - Adapter pattern on the camera package
+ - Multipart POST Form
+ - Displaying images as files
+ - Multiple simultaneous uploads
+ - Postman - API Testing
+ - Updating form status
+ - Other validations
+
 ## Dev
 
  1. Copy the .env.template and rename it to .env
